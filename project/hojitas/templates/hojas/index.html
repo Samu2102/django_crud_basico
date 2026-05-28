@@ -5,7 +5,7 @@
 <div class="card">
     <div class="card-header">
         <!--Listar hojas-->
-        <a name="" id="" class="btn btn-success" href="{% url 'crearh' %}"role="button">Agregar nueva hoja</a>
+        <a name="" id="" class="btn btn-success" href="{% url 'crearh' %}" role="button">Agregar nueva hoja</a>
     </div>
     <div class="card-body">
         <h4 class="card-title">Hojas</h4>
@@ -22,18 +22,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for hoja in hojas %}
                     <tr class="">
-                        <td>1</td>
-                        <td>Hoja icopor</td>
-                        <td>20000</td>
+                        <td>{{ hoja.id }}</td>
+                        <td>{{ hoja.nombre }}</td>
+                        <td>{{ hoja.precio }}</td>
                         <th>
-                            Imagen.jpg
+                            <img src="{{ hoja.imagen.url }}" height="100" />
                         </th>
-                        <td>Hoja de 200x200</td>
-                        <th>
-                            Editar | Borrar
+                        <td>{{ hoja.descripcion }}</td>
+                        <th><a name="" id="" class="btn btn-info" href="{%url 'editarh' hoja.id %}" role="button">Editar</a> |
+                            <a name="" id="" class="btn btn-danger" href="{%url 'eliminarh' hoja.id %}"
+                                role="button">Borrar</a>
                         </th>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
